@@ -1,12 +1,12 @@
 from PySide6.QtWidgets import (
-    QLineEdit,
-    QMainWindow,
-    QWidget,
-    QVBoxLayout,
-    QHBoxLayout,
-    QComboBox,
-    QPushButton,
-)
+        QLineEdit,
+        QMainWindow,
+        QWidget,
+        QVBoxLayout,
+        QHBoxLayout,
+        QComboBox,
+        QPushButton,
+        )
 from .table_widget import DataFrameViewer
 import pandas as pd
 from .set_data import make_dataframe
@@ -48,7 +48,6 @@ class MainWindow(QMainWindow):
 
         # Export button
         self.export_btn = QPushButton("Export CSV")
-        self.export_btn.clicked.connect(self.table.export_csv)
         button_input_layout.addWidget(self.export_btn)
 
 
@@ -62,6 +61,8 @@ class MainWindow(QMainWindow):
         # Add empty table
         self.table = DataFrameViewer(self)
         layout.addWidget(self.table)
+
+        self.export_btn.clicked.connect(self.table.export_csv)
 
         # Connect signals for dynamic updates
         self.campus_combo.currentTextChanged.connect(self.update_table)

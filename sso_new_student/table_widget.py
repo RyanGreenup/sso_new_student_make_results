@@ -38,6 +38,6 @@ class DataFrameViewer(QTableWidget):
             "",
             "CSV Files (*.csv)"
         )
-        
+
         if file_path:
             self.df.to_csv(file_path, index=False)
