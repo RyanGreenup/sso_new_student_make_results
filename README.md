@@ -13,7 +13,7 @@ This program helps generate CSV files that can be uploaded to Subject Selection 
 > Sirius staff seeking guidance on `git` and `uv` should refer to the [internal documentation](https://docs.google.com/document/d/1R7YLiSa9H9-DQCdnC319mpJYSuuJIzYYbIoGzTuFBhg/edit?pli=1&tab=t.0) or speak to either IT or Ryan Greenup in B-G.2 for guidance
 
 ```sh
-uv tool install git+https://github.com/RyanGreenup/sso_new_student_make_results
+uv tool install --force git+https://github.com/RyanGreenup/sso_new_student_make_results
 # Windows
 ~/.local/bin/sso_new_results
 ```
