@@ -3,19 +3,23 @@ import pandas as pd
 
 
 class DataFrameViewer(QTableWidget):
-    def __init__(self, df: pd.DataFrame, parent=None) -> None:
+    def __init__(self, parent=None) -> None:
         super().__init__(parent)
-        self.df = df
+        self.df = pd.DataFrame()  # Empty initial DataFrame
         self._setup_table()
 
     def _setup_table(self) -> None:
-        # Set dimensions
+        """Initialize empty table"""
+        self.setRowCount(0)
+        self.setColumnCount(0)
+
+    def update_data(self, df: pd.DataFrame) -> None:
+        """Update table with new DataFrame data"""
+        self.df = df
         self.setRowCount(len(self.df))
         self.setColumnCount(len(self.df.columns))
-
-        # Set headers
         self.setHorizontalHeaderLabels(list(self.df.columns))
-
+        
         # Populate data
         for row in range(len(self.df)):
             for col in range(len(self.df.columns)):

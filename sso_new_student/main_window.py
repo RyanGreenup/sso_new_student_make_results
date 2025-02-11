@@ -57,17 +57,28 @@ class MainWindow(QMainWindow):
         layout.addLayout(controls_layout)
 
 
-        # Get user inputs and build dataframe
-        dfs: dict[str, DataFrame] = make_dataframe(
+        # Add empty table
+        self.table = DataFrameViewer(self)
+        layout.addWidget(self.table)
+        
+        # Connect signals for dynamic updates
+        self.campus_combo.currentTextChanged.connect(self.update_table)
+        self.student_input.textChanged.connect(self.update_table)
+        self.year_combo.currentTextChanged.connect(self.update_table)
+        self.entrance_score.currentTextChanged.connect(self.update_table)
+        
+        # Initial table update
+        self.update_table()
+    
+    def update_table(self):
+        """Update table when inputs change"""
+        dfs = make_dataframe(
             campus=self.campus_combo.currentText(),
             stu_id=self.student_input.text(),
             y=self.year_combo.currentText(),
             cg=self.entrance_score.currentText(),
             output_directory=Path.cwd()
         )
-
-        # If the table should dynamically respond to the user input, should it be built inside the DataFrame widget or is it acceptable to build it here AI?
-
-        # Add table
-        self.table = DataFrameViewer(df)
-        layout.addWidget(self.table)
+        # Display first DataFrame from the dictionary
+        first_df_key = next(iter(dfs))
+        self.table.update_data(dfs[first_df_key])
