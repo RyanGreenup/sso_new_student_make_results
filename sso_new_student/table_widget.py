@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QTableWidget, QTableWidgetItem
+from PySide6.QtWidgets import QTableWidget, QTableWidgetItem, QFileDialog
 import pandas as pd
 
 
@@ -27,5 +27,17 @@ class DataFrameViewer(QTableWidget):
                 item = QTableWidgetItem(value)
                 self.setItem(row, col, item)
 
-    # Ask the user where to save the csv and use the `.to_csv()` method to export it. AI!
     def export_csv(self) -> None:
+        """Export the current DataFrame to a CSV file."""
+        if self.df.empty:
+            return
+
+        file_path, _ = QFileDialog.getSaveFileName(
+            self,
+            "Save CSV File",
+            "",
+            "CSV Files (*.csv)"
+        )
+        
+        if file_path:
+            self.df.to_csv(file_path, index=False)
