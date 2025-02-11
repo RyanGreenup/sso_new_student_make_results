@@ -50,7 +50,7 @@ class MainWindow(QMainWindow):
         self.export_btn = QPushButton("Export CSV")
         self.export_btn.conn
         button_input_layout.addWidget(self.export_btn)
-        
+
 
         # Add controls to main layout
         controls_layout = QVBoxLayout()
@@ -62,16 +62,16 @@ class MainWindow(QMainWindow):
         # Add empty table
         self.table = DataFrameViewer(self)
         layout.addWidget(self.table)
-        
+
         # Connect signals for dynamic updates
         self.campus_combo.currentTextChanged.connect(self.update_table)
         self.student_input.textChanged.connect(self.update_table)
         self.year_combo.currentTextChanged.connect(self.update_table)
         self.entrance_score.currentTextChanged.connect(self.update_table)
-        
+
         # Initial table update
         self.update_table()
-    
+
     def update_table(self):
         """Update table when inputs change"""
         dfs = make_dataframe(
@@ -81,7 +81,6 @@ class MainWindow(QMainWindow):
             cg=self.entrance_score.currentText(),
             output_directory=Path.cwd()
         )
-        # Improve this so each campus is displayed on a tab AI!
         # Display first DataFrame from the dictionary
         first_df_key = next(iter(dfs))
         self.table.update_data(dfs[first_df_key])
