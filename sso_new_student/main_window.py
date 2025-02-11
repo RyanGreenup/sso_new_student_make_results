@@ -48,7 +48,9 @@ class MainWindow(QMainWindow):
 
         # Export button
         self.export_btn = QPushButton("Export CSV")
+        self.export_btn.conn
         button_input_layout.addWidget(self.export_btn)
+        
 
         # Add controls to main layout
         controls_layout = QVBoxLayout()
