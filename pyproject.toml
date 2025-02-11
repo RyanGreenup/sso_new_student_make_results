@@ -1,0 +1,19 @@
+[project]
+name = "sso-new-student"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "typer>=0.15.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+sso = "sso_new_student.main:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["sso_new_student"]
