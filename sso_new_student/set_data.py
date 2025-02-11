@@ -599,12 +599,26 @@ def make_dataframe(
     df_filtered = df_melted[df_melted['Value'] == 1]
     dfeligible = df_filtered.drop(columns='Value')
     dfeligible = dfeligible.reset_index(drop=True)
-    # dfeligible
 
-    # In Google colab dfeligible is empty, however results has 31 rows. In a local Python install both results and dfeligible are empty. Explain why this is ocurring and how it can be fixed AI?
-    results = dfeligible.copy()
-    results['PreReqResult'] = ''
-    results = results.rename(columns={'Student ID': 'StudentCode', 'Eligible Subject': 'PreReqCode'})
+    # Initialize results with required base data
+    results = pd.DataFrame({
+        'StudentCode': [stu_id],
+        'Campus': [campus],
+        'Current Year': [y],
+        'CG': [cg],
+        'PreReqCode': ['Y', 'CG'],
+        'PreReqResult': [y, cg]
+    }, index=[0, 1])
+
+    # Add eligible subjects if any exist
+    if not dfeligible.empty:
+        subject_results = dfeligible.copy()
+        subject_results['PreReqResult'] = ''
+        subject_results = subject_results.rename(columns={
+            'Student ID': 'StudentCode',
+            'Eligible Subject': 'PreReqCode'
+        })
+        results = pd.concat([results, subject_results], ignore_index=True)
 
     # Add Y
     new_rows = results[['StudentCode', 'Campus', 'Current Year']].drop_duplicates().copy()

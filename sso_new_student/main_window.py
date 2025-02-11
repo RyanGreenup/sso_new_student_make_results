@@ -56,17 +56,14 @@ class MainWindow(QMainWindow):
         layout.addLayout(controls_layout)
 
 
-# AI!
-# take the user inputs and build a dataframe here
-# (function) def make_dataframe(
-#     campus: str,
-#     stu_id: str,
-#     y: str,
-#     cg: str,
-#     output_directory: Path
-# ) -> dict[str, DataFrame]
-   
+        # Get user inputs and build dataframe
         dfs = make_dataframe(
+            campus=self.campus_combo.currentText(),
+            stu_id=self.student_input.text(),
+            y=self.year_combo.currentText(),
+            cg=self.entrance_score.currentText(),
+            output_directory=Path.cwd()
+        )
         # Add table
         self.table = DataFrameViewer(df)
         layout.addWidget(self.table)
