@@ -10,6 +10,7 @@ from PySide6.QtWidgets import (
 from .table_widget import DataFrameViewer
 import pandas as pd
 from .set_data import make_dataframe
+from pathlib import Path
 
 
 class MainWindow(QMainWindow):
@@ -57,13 +58,16 @@ class MainWindow(QMainWindow):
 
 
         # Get user inputs and build dataframe
-        dfs = make_dataframe(
+        dfs: dict[str, DataFrame] = make_dataframe(
             campus=self.campus_combo.currentText(),
             stu_id=self.student_input.text(),
             y=self.year_combo.currentText(),
             cg=self.entrance_score.currentText(),
             output_directory=Path.cwd()
         )
+
+        # If the table should dynamically respond to the user input, should it be built inside the DataFrame widget or is it acceptable to build it here AI?
+
         # Add table
         self.table = DataFrameViewer(df)
         layout.addWidget(self.table)
