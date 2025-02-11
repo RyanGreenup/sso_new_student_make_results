@@ -13,7 +13,7 @@ from .set_data import make_dataframe
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, df: pd.DataFrame):
+    def __init__(self):
         super().__init__()
         self.setWindowTitle("Student Data Viewer")
 
@@ -55,6 +55,18 @@ class MainWindow(QMainWindow):
         controls_layout.addLayout(button_input_layout)
         layout.addLayout(controls_layout)
 
+
+# AI!
+# take the user inputs and build a dataframe here
+# (function) def make_dataframe(
+#     campus: str,
+#     stu_id: str,
+#     y: str,
+#     cg: str,
+#     output_directory: Path
+# ) -> dict[str, DataFrame]
+   
+        dfs = make_dataframe(
         # Add table
         self.table = DataFrameViewer(df)
         layout.addWidget(self.table)
