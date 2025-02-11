@@ -1,0 +1,49 @@
+#+title: Staff Documentation
+
+
+The Sirius Data team has developed graphical software to facilitate
+generating the data for staff members. This software is available on [[https://github.com/RyanGreenup/sso_new_student_make_results][GitHub
+here]].
+
+To install this tool:
+
+
+  - Windows
+    1. Install Scoop
+       1. Open Powershell
+       2. Run the install script from [[https://scoop.sh/][scoop.sh]]
+          #+begin_src powershell
+          Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+          Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+          #+end_src
+    2. Install Python, UV and git
+       #+begin_src sh
+       scoop install python uv git
+       #+end_src
+    3. Install the GUI
+       #+begin_src sh
+       uv tool install --force git+https://github.com/RyanGreenup/sso_new_student_make_results
+       #+end_src
+    4. Start the Program
+       #+begin_src sh
+       $env:USERPROFILE\.local\bin\sso_new_results
+       #+end_src
+  - Mac OSX or Linux
+    1. Mac OSX users should install [[https://brew.sh/][brew]], Linux users will already have a package manager, e.g. =apt=, =pacman=, =dnf=, etc.
+    2. Install Python, Git and uv
+       - Mac
+         #+begin_src sh
+         brew install git python uv
+         #+end_src
+       - Linux
+         #+begin_src sh
+         # Ubuntu
+         sudo apt install git python uv
+         # Arch
+         sudo pacman -S  git python uv
+         #+end_src
+    3. Install the GUI (As Above)
+    4. Start the program
+       #+begin_src sh
+       $HOME/.local/bin/sso_new_results
+       #+end_src
