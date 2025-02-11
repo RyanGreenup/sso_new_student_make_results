@@ -79,6 +79,7 @@ class MainWindow(QMainWindow):
             cg=self.entrance_score.currentText(),
             output_directory=Path.cwd()
         )
+        # Improve this so each campus is displayed on a tab AI!
         # Display first DataFrame from the dictionary
         first_df_key = next(iter(dfs))
         self.table.update_data(dfs[first_df_key])
