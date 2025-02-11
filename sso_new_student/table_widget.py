@@ -19,10 +19,13 @@ class DataFrameViewer(QTableWidget):
         self.setRowCount(len(self.df))
         self.setColumnCount(len(self.df.columns))
         self.setHorizontalHeaderLabels(list(self.df.columns))
-        
+
         # Populate data
         for row in range(len(self.df)):
             for col in range(len(self.df.columns)):
                 value = str(self.df.iloc[row, col])
                 item = QTableWidgetItem(value)
                 self.setItem(row, col, item)
+
+    # Ask the user where to save the csv and use the `.to_csv()` method to export it. AI!
+    def export_csv(self) -> None:
